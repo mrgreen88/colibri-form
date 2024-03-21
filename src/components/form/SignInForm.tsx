@@ -20,9 +20,7 @@ import GoogleButton from "../ui/GoogleButton";
 import FacebookButton from "../ui/FacebookButton";
 
 const FormSchema = z.object({
-  email: z.string().min(6, {
-    message: "Email must contain @ character.",
-  }),
+  email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z.string().min(8, {
     message:
       "Password must contain at least an alphabet a number and a special character.",
@@ -38,8 +36,8 @@ const SignInForm = () => {
     },
   });
 
-  const onSubmit = () => {
-    console.log("Form submitted!");
+  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+    console.log(values);
   };
 
   return (
@@ -78,7 +76,11 @@ const SignInForm = () => {
                   Password
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your password" {...field} />
+                  <Input
+                    type="password"
+                    placeholder="Enter your password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,7 +115,7 @@ const SignInForm = () => {
           </div>
 
           <div className="flex gap-4 mb-8">
-            <GoogleButton />
+            <GoogleButton>Google</GoogleButton>
             <FacebookButton />
           </div>
 
@@ -121,7 +123,7 @@ const SignInForm = () => {
             <p className="text-gray-600 text-sm">Don’t have an account?</p>
             <Link
               href="/sign-up"
-              className="text-primary font-semibold text-sm"
+              className="text-primary font-semibold text-sm hover:underline"
             >
               Sign up
             </Link>
