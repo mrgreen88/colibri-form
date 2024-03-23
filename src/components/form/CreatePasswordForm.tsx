@@ -21,15 +21,6 @@ import Link from "next/link";
 
 const FormSchema = z
   .object({
-    username: z
-      .string()
-      .min(2, {
-        message: "Username must be at least 2 characters.",
-      })
-      .max(50),
-    email: z.string().min(6, {
-      message: "Email must contain @ character.",
-    }),
     password: z.string().min(8, {
       message:
         "Password must contain at least an alphabet a number and a special character.",
@@ -41,12 +32,10 @@ const FormSchema = z
     message: "Password do not match",
   });
 
-const SignUpForm = () => {
+const CreatePasswordForm = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
-      email: "",
       password: "",
       confirmPassword: "",
     },
@@ -58,39 +47,18 @@ const SignUpForm = () => {
 
   return (
     <div className="mb-10">
-      <div className="text-center mb-8">
-        <h1 className="sm:text-3xl text-2xl leading-[38px] font-semibold text-header mb-3">
-          Get started
+      <div className="text-center mb-4">
+        <h1 className="sm:text-3xl text-2xl leading-[38px] font-semibold text-header mb-8">
+          Create a password
         </h1>
-        <p className="text-paragraph">Create your account now</p>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="mb-4">
-                <FormLabel className="text-label font-medium mb-2">
-                  Email
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className="text-input"
-                    placeholder="Enter your email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className="mb-4">
+              <FormItem className="mb-5">
                 <FormLabel className="text-label font-medium mb-2">
                   New Password
                 </FormLabel>
@@ -133,7 +101,7 @@ const SignUpForm = () => {
           />
 
           <Button className="w-full font-semibold" type="submit">
-            Create account
+            Get started
           </Button>
 
           <div className="flex items-center w-full justify-center my-4">
@@ -162,4 +130,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default CreatePasswordForm;
