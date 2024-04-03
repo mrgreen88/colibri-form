@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { toast } from "../ui/use-toast";
 
 const FormSchema = z
   .object({
@@ -39,7 +40,9 @@ const ChangePasswordForm = () => {
   });
 
   const onSubmit = () => {
-    console.log("Form submitted!");
+    toast({
+      description: "Your message has been sent.",
+    });
   };
 
   return (
