@@ -46,7 +46,7 @@ const Sidebar = () => {
         Settings
       </h3>
       <div className='flex flex-col gap-3'>
-        <ul>
+        <ul className='flex gap-3 flex-col'>
           {menuItems.map((cat) => (
             <li key={cat.title}>
               <Button variant='ghost' className='w-full'>
