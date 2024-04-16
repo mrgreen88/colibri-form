@@ -8,11 +8,13 @@ interface AuthLayoutProps {
 
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   return (
-    <div className='flex flex-col h-screen'>
-      <Navbar />
-      <div className='flex h-screen'>
-        <Sidebar />
-        {children}
+    <div className="w-full h-full bg-[#f0f4f9]">
+      <div className="flex flex-col h-screen w-[1280px] m-auto bg-white">
+        <Navbar />
+        <div className="flex h-screen">
+          <Sidebar />
+          {children}
+        </div>
       </div>
     </div>
   )
